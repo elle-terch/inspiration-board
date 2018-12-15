@@ -18,18 +18,31 @@ class Board extends Component {
       }
     });
 
-
-
     this.state = {
       cards: {cardList}
     };
-    console.log(this.state.cards)
+
+    console.log(typeof this.state.cards)
   }
 
   render() {
+    const allCards = this.state.cards.cardList;
+
+    // console.log(this.state.cards.cardList)
+
+
+    const test = allCards.map((card, i) => {
+      return <Card
+        key={i}
+        text={card.text}
+        emoji={card.emoji}
+        />
+    });
+
     return (
       <div>
         Board
+        {test}
       </div>
     )
   }
