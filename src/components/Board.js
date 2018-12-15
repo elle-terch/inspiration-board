@@ -11,9 +11,19 @@ class Board extends Component {
   constructor() {
     super();
 
+    const cardList = CARD_DATA.cards.map((card) => {
+      return {
+        text: card.text,
+        emoji: card.emoji
+      }
+    });
+
+
+
     this.state = {
-      cards: [],
+      cards: {cardList}
     };
+    console.log(this.state.cards)
   }
 
   render() {
