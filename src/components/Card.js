@@ -7,7 +7,7 @@ import './Card.css';
 class Card extends Component {
 
   render(props) {
-    const emoji = require("emoji-dictionary");
+    // const emoji = require("emoji-dictionary");
 
     let icon = this.props.emoji;
     if (icon !== undefined) {
@@ -17,17 +17,14 @@ class Card extends Component {
     return (
 
       <div className="card">
-        <div className="card_content">
-          <div className="card_content-text">
+        <div className="card__content">
+          <p className="card__content-text">
             {this.props.text}
-          </div>
+          </p>
 
-          <div className="card_content-emoji">
-            {console.log(icon)}
+          <p className="card__content-emoji">
             {icon}
-
-
-          </div>
+          </p>
 
 
         </div>
