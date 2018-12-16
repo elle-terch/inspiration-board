@@ -11,37 +11,70 @@ class Board extends Component {
   constructor() {
     super();
 
-    const cardList = CARD_DATA.cards.map((card) => {
-      return {
-        text: card.text,
-        emoji: card.emoji
-      }
-    });
+    // const cardList = CARD_DATA.cards.map((card) => {
+    //   return {
+    //     text: card.text,
+    //     emoji: card.emoji
+    //   }
+    // });
+
+
 
     this.state = {
-      cards: {cardList}
+      cards: []
     };
 
-    console.log(typeof this.state.cards)
+  }
+
+  componentDidMount() {
+    console.log("The component did in fact mount");
+    const GET_ALL_CARDS_URL = "https://inspiration-board.herokuapp.com/boards/lindsay/cards";
+
+    axios.get(GET_ALL_CARDS_URL)
+    .then((response) => {
+      this.setState({
+        cards: response.data,
+      });
+    })
+    // .catch((error) => {
+    //   this.setState({
+    //     error: error.message
+    //   });
+    // });
   }
 
   render() {
-    const allCards = this.state.cards.cardList;
+    // const allCards = this.state.cards.cardList;
 
     // console.log(this.state.cards.cardList)
 
 
-    const test = allCards.map((card, i) => {
+    // const cardGrid = allCards.map((card, i) => {
+    //   return <Card
+    //     key={i}
+    //     text={card.text}
+    //     emoji={card.emoji}
+    //     />
+    // });
+
+    const allCards = this.state.cards.map((card, i) => {
+
+      const formattedCard = {
+        id: card.card.id,
+        text: card.card.text,
+        emoji: card.card.emoji
+      }
+
       return <Card
-        key={i}
-        text={card.text}
-        emoji={card.emoji}
+        key={card.card.id}
+        card={formattedCard}
         />
     });
 
+
     return (
       <div className = "board">
-        {test}
+        {allCards}
       </div>
     )
   }
