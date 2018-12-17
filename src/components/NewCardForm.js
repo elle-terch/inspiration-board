@@ -13,7 +13,6 @@ class NewCardForm extends Component {
     this.state={
       text: "",
       emoji: "",
-      id: ""
     }
     console.log(this.props)
   }
