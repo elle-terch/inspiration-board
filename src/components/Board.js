@@ -58,11 +58,9 @@ class Board extends Component {
   }
 
 
-
-
   render() {
 
-    const allCards = this.state.cards.map((item, i) => {
+    const allCards = this.state.cards.map((item) => {
 
       const card = item.card
 

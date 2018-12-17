@@ -78,7 +78,7 @@ class NewCardForm extends Component {
             Emoji:&nbsp;&nbsp;
           </label>
 
-          <select className="new-card-form__form-select" value={this.state.value} onChange={this.onInputChange}>
+          <select id="selectId" className="new-card-form__form-select" value={this.state.value} onChange={this.onInputChange}>
             <option value="">no emoji</option>
             <option value="heart_eyes">{emoji.getUnicode("heart_eyes")}</option>
             <option value="beer">{emoji.getUnicode("beer")}</option>
