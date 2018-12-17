@@ -12,7 +12,7 @@ class Card extends Component {
   }
 
   render(props) {
-    console.log(this.props.card.id)
+    console.log(this.props.card)
 
     let icon = this.props.card.emoji;
     if (icon !== null) {

@@ -35,14 +35,28 @@ class Board extends Component {
   }
 
   deleteCard = (cardId) => {
-    console.log(`The card with id ${cardId} will be deleted`)
-    console.log(this.state.cards.length)
-    const cards = this.state.cards;
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardId}`)
-    this.setState({cards: cards})
-    console.log(this.state.cards.length)
 
+    .then((response) => {
+      const updateList = this.state.cards.filter((card) =>{
+        return card["card"].id !== cardId;
+      })
+      this.setState({cards: updateList});
+    })
   }
+
+  addCard = (newCard) => {
+    console.log(newCard.text)
+
+    axios.post(`https://inspiration-board.herokuapp.com/boards/lindsay/cards`, newCard)
+    let updatedCards = this.state.cards;
+    updatedCards.push(newCard);
+    this.setState({cards: updatedCards});
+    console.log(this.state.cards)
+  }
+
+
+
 
   render() {
 
@@ -74,9 +88,18 @@ class Board extends Component {
       //   );})}
       // </div>
 
+      <div>
+        <div>
 
-      <div className = "board">
-        {allCards}
+            <NewCardForm addCardCallback={this.addCard} />
+
+
+        </div>
+
+
+        <div className = "board">
+          {allCards}
+        </div>
       </div>
     )
   }

@@ -9,6 +9,7 @@
 .new-card-form__header {
   text-align: center;
   text-transform: uppercase;
+  padding-bottom: 2em;
 }
 
 .new-card-form__form {
@@ -24,6 +25,8 @@
   grid-row: auto;
 }
 
+
+
 .new-card-form__form-select,
 .new-card-form__form-textarea,
 .new-card-form__form-button {
@@ -31,10 +34,12 @@
   font-size: 1.25em;
   grid-column: controls;
   grid-row: auto;
+  width: 100%
 }
 
 .new-card-form__form-button {
-  background-color: inherit;
+  background-color: lightblue;
   border: 1px solid black;
   font-size: 1em;
+  margin-top: 1.5em;
 }
