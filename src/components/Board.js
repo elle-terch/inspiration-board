@@ -49,10 +49,12 @@ class Board extends Component {
     console.log(newCard.text)
 
     axios.post(`https://inspiration-board.herokuapp.com/boards/lindsay/cards`, newCard)
-    let updatedCards = this.state.cards;
-    updatedCards.push(newCard);
-    this.setState({cards: updatedCards});
-    console.log(this.state.cards)
+    .then((response) => {
+      const updatedCardsList = [...this.state.cards, response.data]
+      this.setState({
+        cards: updatedCardsList
+      });
+    })
   }
 
 
