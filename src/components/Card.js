@@ -6,15 +6,19 @@ import './Card.css';
 
 class Card extends Component {
 
+  handleClick = () => {
+    console.log(`button was clicked! ID = ${this.props.card.id}`)
+    this.props.deleteCardCallback(this.props.card.id)
+  }
+
   render(props) {
-    // const emoji = require("emoji-dictionary");
+    console.log(this.props.card.id)
 
     let icon = this.props.card.emoji;
     if (icon !== null) {
       icon = emoji.getUnicode(icon);
     }
 
-    console.log(this.props)
 
     return (
 
@@ -27,6 +31,7 @@ class Card extends Component {
           <p className="card__content-emoji">
             {icon}
           </p>
+          <button onClick={this.handleClick} type="submit">Delete</button>
 
 
         </div>
@@ -36,7 +41,8 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-
+  emoji: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default Card;

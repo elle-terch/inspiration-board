@@ -11,15 +11,6 @@ class Board extends Component {
   constructor() {
     super();
 
-    // const cardList = CARD_DATA.cards.map((card) => {
-    //   return {
-    //     text: card.text,
-    //     emoji: card.emoji
-    //   }
-    // });
-
-
-
     this.state = {
       cards: []
     };
@@ -43,36 +34,47 @@ class Board extends Component {
     // });
   }
 
+  deleteCard = (cardId) => {
+    console.log(`The card with id ${cardId} will be deleted`)
+    console.log(this.state.cards.length)
+    const cards = this.state.cards;
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardId}`)
+    this.setState({cards: cards})
+    console.log(this.state.cards.length)
+
+  }
+
   render() {
-    // const allCards = this.state.cards.cardList;
 
-    // console.log(this.state.cards.cardList)
+    const allCards = this.state.cards.map((item, i) => {
 
-
-    // const cardGrid = allCards.map((card, i) => {
-    //   return <Card
-    //     key={i}
-    //     text={card.text}
-    //     emoji={card.emoji}
-    //     />
-    // });
-
-    const allCards = this.state.cards.map((card, i) => {
+      const card = item.card
 
       const formattedCard = {
-        id: card.card.id,
-        text: card.card.text,
-        emoji: card.card.emoji
+        id: card.id,
+        text: card.text,
+        emoji: card.emoji
       }
 
       return <Card
-        key={card.card.id}
+        key={card.id}
         card={formattedCard}
+        deleteCardCallback={this.deleteCard}
         />
     });
 
 
     return (
+
+      // <div>
+      //   {cards.map(function(groupItem, key){ return (
+      //     Object.keys(groupItem).map(function(item){return (
+      //       <Card group={groupItem} item={item} />
+      //     );})
+      //   );})}
+      // </div>
+
+
       <div className = "board">
         {allCards}
       </div>
